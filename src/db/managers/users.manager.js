@@ -1,32 +1,23 @@
-import  userModel  from "../models/users.model.js";
+import usersModel from "../models/users.model.js";
+import BasicMongo from "./basic.manager.js";
 
-class UsersManager {
 
-    async create(user){
-        try {
-            const newUser = await userModel.create(user)
-            return newUser
-        } catch (error) {
-            return error
-        }
+class UsersMongo extends BasicMongo {
+    constructor() {
+        super(usersModel, "products");
     }
 
-    async findUser(username){
+    async findByEmail(email) {
         try {
-            const user = await userModel.findOne({username})
-            return user
-        } catch (error) {
-            return error
-        }
-    }
-    async findUserById(id){
-        try {
-            const user = await userModel.findById(id)
-            return user
+            const response = await usersModel.findOne({ email });
+            return response
         } catch (error) {
             return error
         }
     }
 }
 
-export const usersManager = new UsersManager()
+
+export const usersMongo = new UsersMongo();
+
+
