@@ -9,19 +9,19 @@ import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 
 const app = express();
-const PORT= 8080;
+const PORT = 8080;
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
 //cookies
 app.use(cookieParser());
 
 //session
 app.use(session({
-    store:new MongoStore({
-        mongoUrl:`mongodb+srv://alejososa1987:Mongo54321@cluster0.donqjdb.mongodb.net/entregaDataBase?retryWrites=true&w=majority`,
+    store: new MongoStore({
+        mongoUrl: `mongodb+srv://alejososa1987:Mongo54321@cluster0.donqjdb.mongodb.net/entregaDataBase?retryWrites=true&w=majority`,
     }),
-    secreKey:"sessionMongo",
+    secreKey: "sessionMongo",
 }));
 
 //passport
@@ -32,8 +32,14 @@ app.use(passport.session());
 
 
 
-app.listen(PORT,( )=>{
+app.listen(PORT, () => {
     console.log("Escuchando puerto 8080");
 });
 
-app.use("/api/products",productsRouter);
+app.use("/api/products", productsRouter);
+
+//y sus rutas
+//rutas para la session
+
+
+
